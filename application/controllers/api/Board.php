@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
  * 게시판 클래스
@@ -33,7 +34,16 @@ class Board extends CI_Controller
 
 	public function create()
 	{
-
+		if($_SERVER['REQUEST_METHOD'] == 'GET'){
+			$result = array(
+				'name' => 'name',
+				'id' => 'id1'
+			);
+			$this->output->set_output(json_encode($result));
+		} else {
+			$this->output->set_status_header(405);
+			$this->output->set_output(json_encode(array("error" => "AB123")));
+		}
 	}
 
 	public function boardList()
